@@ -102,7 +102,7 @@ namespace Microsoft.ML.OnnxRuntime
         public IntPtr AllocatorFree;
         public IntPtr AllocatorGetInfo;
         public IntPtr GetAllocatorWithDefaultOptions;
-        public IntPtr AddFreeDimensionOverride;
+        public IntPtr AddFreeDimensionOverrideByDenotation;
         public IntPtr GetValue;
         public IntPtr GetValueCount;
         public IntPtr CreateValue;
@@ -202,7 +202,7 @@ namespace Microsoft.ML.OnnxRuntime
             OrtGetAllocatorWithDefaultOptions = (DOrtGetAllocatorWithDefaultOptions)Marshal.GetDelegateForFunctionPointer(api_.GetAllocatorWithDefaultOptions, typeof(DOrtGetAllocatorWithDefaultOptions));
             OrtAllocatorFree = (DOrtAllocatorFree)Marshal.GetDelegateForFunctionPointer(api_.AllocatorFree, typeof(DOrtAllocatorFree));
             OrtAllocatorGetInfo = (DOrtAllocatorGetInfo)Marshal.GetDelegateForFunctionPointer(api_.AllocatorGetInfo, typeof(DOrtAllocatorGetInfo));
-            OrtAddFreeDimensionOverride = (DOrtAddFreeDimensionOverride)Marshal.GetDelegateForFunctionPointer(api_.AddFreeDimensionOverride, typeof(DOrtAddFreeDimensionOverride));
+            OrtAddFreeDimensionOverrideByDenotation = (DOrtAddFreeDimensionOverrideByDenotation)Marshal.GetDelegateForFunctionPointer(api_.AddFreeDimensionOverrideByDenotation, typeof(DOrtAddFreeDimensionOverrideByDenotation));
 
             OrtGetValue = (DOrtGetValue)Marshal.GetDelegateForFunctionPointer(api_.GetValue, typeof(DOrtGetValue));
             OrtGetValueType = (DOrtGetValueType)Marshal.GetDelegateForFunctionPointer(api_.GetValueType, typeof(DOrtGetValueType));
@@ -439,9 +439,6 @@ namespace Microsoft.ML.OnnxRuntime
 
         public delegate IntPtr /*(OrtStatus*)*/ DOrtAddFreeDimensionOverrideByDenotation(IntPtr /*(OrtSessionOptions*) */ options, string /*(const char*)*/ dim_denotation, int dim_value);
         public static DOrtAddFreeDimensionOverrideByDenotation OrtAddFreeDimensionOverrideByDenotation;
-
-        public delegate IntPtr /*(OrtStatus*)*/ DOrtAddFreeDimensionOverrideByName(IntPtr /*(OrtSessionOptions*) */ options, string /*(const char*)*/ dim_name, int dim_value);
-        public static DOrtAddFreeDimensionOverrideByName OrtAddFreeDimensionOverrideByName;
 
         public delegate IntPtr /*(OrtStatus*)*/DOrtRegisterCustomOpsLibrary(IntPtr /*(OrtSessionOptions*) */ options, string /*(const char*)*/ library_path, out IntPtr /* (void**) */ library_handle);
         public static DOrtRegisterCustomOpsLibrary OrtRegisterCustomOpsLibrary;
